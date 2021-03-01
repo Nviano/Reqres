@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useDropzone } from 'react-dropzone';
 import { useMutation, useQueryClient } from 'react-query';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import useStyles from "./UserFormViewStyles";
 import { USERS_LIST } from '../../config/router/paths';
 import { Grid, Typography } from '@material-ui/core';
@@ -81,7 +81,9 @@ const UserFormView = () => {
         mutation.mutate();
     }
 
-
+    const onGoBackClick = () => {
+        history.goBack();
+    }
 
     const [files, setFiles] = useState([]);
     const { getRootProps, getInputProps } = useDropzone({
@@ -123,8 +125,15 @@ const UserFormView = () => {
                     <input name='lastName' ref={register} className={classes.input} />
                     <label>Email:</label>
                     <input name='email' ref={register} className={classes.input} />
-                    <ButtonComponent onClick={onCreateUserClick} label='Crear' padding={10} />
                 </form>
+                <Grid container item xs={12} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Grid item xs={4}>
+                        <ButtonComponent onClick={onGoBackClick} label='cancelar' padding={10} background='#ff1435' />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <ButtonComponent onClick={onCreateUserClick} label='Crear' padding={10} background='deeppink' />
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
     )

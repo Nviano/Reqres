@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core';
 
 export default makeStyles(() => ({
     button: {
-        background: 'deeppink',
         color: '#fff',
         textTransform: 'uppercase',
         border: 'none',

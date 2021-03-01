@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { useTranslation } from 'react-i18next';
 import useStyles from "./UserCardComponentStyles";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -11,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 const UserCardComponent = (props) => {
     const { avatar, firstName, lastName, email, emailClass, titleClass, emailTitleText, imgHeight } = props;
     const classes = useStyles();
+    const { t } = useTranslation("", { useSuspense: false });
 
     return (
         <Card className={classes.root}>
@@ -28,7 +30,7 @@ const UserCardComponent = (props) => {
                     </Typography>
                     {emailTitleText &&
                         <Typography variant="body2" color="textSecondary" component="p">
-                            Email:
+                            {t('email')}:
                     </Typography>
                     }
                     <Typography variant="body2" color="textSecondary" component="p" className={emailClass}>

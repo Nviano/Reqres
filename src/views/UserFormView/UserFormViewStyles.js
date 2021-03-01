@@ -30,5 +30,9 @@ export default makeStyles(() => ({
     img: {
         width: '18rem',
         height: 'inherit'
+    },
+    spaceBetween: {
+        display: 'flex',
+        justifyContent: 'space-between'
     }
 }));

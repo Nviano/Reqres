@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useTranslation } from 'react-i18next';
 import { useParams, useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import useStyles from "./UserDetailViewStyles";
@@ -12,11 +13,12 @@ const UserDetailView = () => {
     const classes = useStyles();
     const params = useParams();
     const history = useHistory();
+    const { t } = useTranslation("", { useSuspense: false });
 
     const fetchUser = async () => {
         const response = await fetch(`https://reqres.in/api/users/${params.id}`);
         if (!response.ok) {
-            throw new Error('Hubo un error cargando la lista de usuarios');
+            throw new Error(t('an_error_occurred_loading_user'));
         }
         return response.json();
     }
@@ -24,11 +26,11 @@ const UserDetailView = () => {
     const query = useQuery('USER', fetchUser);
 
     if (query.isLoading) {
-        return <div>Cargando usuario</div>
+        return <div>{t('loading_user')}</div>
     }
 
     if (query.isError) {
-        return <div>Error cargando el usuario: {query.error?.message}</div>
+        return <div>{t('error_loading_user:')} {query.error?.message}</div>
     }
 
     const onGoBackClick = () => {
@@ -40,7 +42,7 @@ const UserDetailView = () => {
     return (
         <Grid container item xs={12}>
             <Grid item xs={2}>
-                <ButtonComponent padding={10} width='auto' label='volver' onClick={onGoBackClick} />
+                <ButtonComponent padding={10} width='auto' label={t('back')} onClick={onGoBackClick} />
             </Grid>
             <Grid container item xs={12} className={classes.centerContent}>
                 <Grid container item xs={4} className={classes.container}>
@@ -55,8 +57,8 @@ const UserDetailView = () => {
                         titleClass={classes.title}
                     />
                 </Grid>
-                <Grid item xs={2} style={{ position: 'absolute', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <img style={{ overflow: 'hidden', borderRadius: 100, height: 150, width: 150 }} src={user.avatar} alt={`user-${user.first_name}`} />
+                <Grid item xs={2} className={classes.imgContainer} >
+                    <img className={classes.img} src={user.avatar} alt={`user-${user.first_name}`} />
                 </Grid>
             </Grid>
         </Grid>

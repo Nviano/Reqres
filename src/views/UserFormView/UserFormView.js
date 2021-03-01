@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useTranslation } from 'react-i18next';
 import { useDropzone } from 'react-dropzone';
 import { useMutation, useQueryClient } from 'react-query';
 import { useHistory } from 'react-router-dom';
@@ -24,6 +25,8 @@ const UserFormView = () => {
     });
 
     const data = watch();
+    const { t } = useTranslation("", { useSuspense: false });
+
 
     const createUser = async () => {
         const response = await fetch('https://reqres.in/api/users', {
@@ -40,7 +43,7 @@ const UserFormView = () => {
             })
         });
         if (!response.ok) {
-            throw new Error('Hubo un error cargando la lista de usuarios');
+            throw new Error(t('an_error_occurred_creating_user'));
         }
         return await response.json();
     }
@@ -110,28 +113,28 @@ const UserFormView = () => {
     return (
         <Grid container item xs={12} className={classes.centerContent}>
             <Grid item xs={12}>
-                <Typography variant='h4' className={classes.centerText}>Agregar usuario</Typography>
+                <Typography variant='h4' className={classes.centerText}>{t('add_user')}</Typography>
             </Grid>
             <Grid item xs={6}>
                 <form onSubmit={handleSubmit(createUser)}>
-                    <label htmlFor='avatar'>Avatar:</label>
+                    <label htmlFor='avatar'>{t('avatar')}:</label>
                     {files.length === 0 ?
                         <FileInputComponent files={files} getInputProps={getInputProps} getRootProps={getRootProps} className={classes.dropzoneText} />
                         : thumbs
                     }
-                    <label htmlFor='firstName'>Nombre:</label>
+                    <label htmlFor='firstName'>{t('name')}:</label>
                     <input type='text' id='firstName' name='firstName' ref={register} className={classes.input} />
-                    <label htmlFor='lastName'>Apellido:</label>
+                    <label htmlFor='lastName'>{t('last_name')}:</label>
                     <input type='text' id='lastName' name='lastName' ref={register} className={classes.input} />
-                    <label htmlFor='email'>Email:</label>
+                    <label htmlFor='email'>{t('email')}:</label>
                     <input type='email' id='email' name='email' ref={register} className={classes.input} />
                 </form>
-                <Grid container item xs={12} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Grid container item xs={12} className={classes.spaceBetween}>
                     <Grid item xs={4}>
-                        <ButtonComponent onClick={onGoBackClick} label='cancelar' padding={10} background='#ff1435' />
+                        <ButtonComponent onClick={onGoBackClick} label={t('cancel')} padding={10} background='#ff1435' />
                     </Grid>
                     <Grid item xs={4}>
-                        <ButtonComponent onClick={onCreateUserClick} label='Crear' padding={10} background='deeppink' />
+                        <ButtonComponent onClick={onCreateUserClick} label={t('create')} padding={10} background='deeppink' />
                     </Grid>
                 </Grid>
             </Grid>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, generatePath, useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import { USER, CREATE_USER } from '../../config/router/paths';
@@ -13,13 +14,14 @@ const UserListView = () => {
     const query = useUsers();
     const classes = useStyles();
     const history = useHistory();
+    const { t } = useTranslation("", { useSuspense: false });
 
     if (query.isLoading) {
-        return <div>Cargando usuarios</div>
+        return <div>{t('loading_users')}</div>
     }
 
     if (query.isError) {
-        return <div>Error cargando los usuarios: {query.error?.message}</div>
+        return <div>{t('error_loading_users')}: {query.error?.message}</div>
     }
 
     const usersList = query.data.data;

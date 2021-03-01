@@ -1,0 +1,22 @@
+{
+    "welcome_to_reqres": "Bienvenido a Reqres Web",
+    "web_to_interact_with_api_fake": "La web donde interactuar con la API fake de",
+    "reqres": "Reqres.in",
+    "loading_user": "Cargando usuario",
+    "loading_users": "Cargando usuarios",
+    "error_loading_user:": "Error cargando el usuario:",
+    "error_loading_users": "Error cargando los usuarios",
+    "an_error_occurred_loading_user": "Hubo un error cargando el usuario",
+    "an_error_occurred_loading_user_list": "Hubo un error cargando la lista de usuarios",
+    "an_error_occurred_creating_user": "Hubo un error creando el usuario",
+    "add_user": "Agregar usuario",
+    "avatar": "Avatar",
+    "name": "Nombre",
+    "last_name": "Apellido",
+    "email": "Email",
+    "cancel": "Cancelar",
+    "create": "Crear",
+    "start": "Comenzar",
+    "back": "Volver",
+    "drag_your_file_here_or_click_to_select_it": "Arrastre su archivo aquí, o haga click para seleccionarlo"
+}

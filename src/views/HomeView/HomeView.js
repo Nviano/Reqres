@@ -2,6 +2,7 @@ import React from 'react';
 import 'animate.css';
 import clsx from 'clsx';
 import { Grid, Typography } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 import useStyles from "./HomeViewStyles";
 import ButtonComponent from '../../components/ButtonComponent';
 import { useHistory } from 'react-router';
@@ -11,6 +12,7 @@ const HomeView = () => {
 
     const classes = useStyles();
     const hystory = useHistory();
+    const { t } = useTranslation("", { useSuspense: false });
 
     const onAccessClick = () => {
         hystory.push(USERS_LIST);
@@ -20,19 +22,19 @@ const HomeView = () => {
         <Grid container item xs={12} className={classes.centerContent}>
             <Grid item xs={6} className={classes.headerContainer}>
                 <Typography variant='h4' className={clsx(classes.header, "animate__animated animate__zoomInDown")}>
-                    Bienvenido a Reqres Web
+                    {t('welcome_to_reqres')}
                 </Typography>
             </Grid>
             <Grid container item xs={12} className={classes.centerContent}>
                 <Grid item xs={6}>
                     <Typography variant='h5' className={clsx(classes.text, "animate__animated animate__fadeIn animate__delay-2s")}>
-                        La web donde interactuar con la API fake de <a href='https://reqres.in/'>Reqres.in</a>
+                        {t('web_to_interact_with_api_fake')} <a href='https://reqres.in/'>{t('reqres')}</a>
                     </Typography>
                 </Grid>
             </Grid>
             <Grid container item xs={12} className={clsx(classes.text, classes.centerContent, "animate__animated animate__fadeInRight animate__delay-3s")}>
                 <Grid item xs={2}>
-                    <ButtonComponent label='comenzar' onClick={onAccessClick} />
+                    <ButtonComponent label={t('start')} onClick={onAccessClick} />
                 </Grid>
             </Grid>
         </Grid>

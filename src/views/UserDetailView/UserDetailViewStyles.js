@@ -20,5 +20,17 @@ export default makeStyles(() => ({
         fontSize: 22,
         fontWeight: 'bold',
         textAlign: 'center'
+    },
+    imgContainer: {
+        position: 'absolute',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    img: {
+        overflow: 'hidden',
+        borderRadius: 100,
+        height: 150,
+        width: 150
     }
 }));

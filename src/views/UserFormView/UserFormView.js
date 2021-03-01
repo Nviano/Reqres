@@ -36,7 +36,7 @@ const UserFormView = () => {
                 job: 'developer',
                 first_name: data.firstName,
                 last_name: data.lastName,
-                avatar: files[0].preview
+                avatar: files[0].preview || ''
             })
         });
         if (!response.ok) {
@@ -114,17 +114,17 @@ const UserFormView = () => {
             </Grid>
             <Grid item xs={6}>
                 <form onSubmit={handleSubmit(createUser)}>
-                    <label>Avatar:</label>
+                    <label htmlFor='avatar'>Avatar:</label>
                     {files.length === 0 ?
                         <FileInputComponent files={files} getInputProps={getInputProps} getRootProps={getRootProps} className={classes.dropzoneText} />
                         : thumbs
                     }
-                    <label>Nombre:</label>
-                    <input name='firstName' ref={register} className={classes.input} />
-                    <label>Apellido:</label>
-                    <input name='lastName' ref={register} className={classes.input} />
-                    <label>Email:</label>
-                    <input name='email' ref={register} className={classes.input} />
+                    <label htmlFor='firstName'>Nombre:</label>
+                    <input type='text' id='firstName' name='firstName' ref={register} className={classes.input} />
+                    <label htmlFor='lastName'>Apellido:</label>
+                    <input type='text' id='lastName' name='lastName' ref={register} className={classes.input} />
+                    <label htmlFor='email'>Email:</label>
+                    <input type='email' id='email' name='email' ref={register} className={classes.input} />
                 </form>
                 <Grid container item xs={12} style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Grid item xs={4}>
